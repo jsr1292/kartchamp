@@ -18,14 +18,15 @@
   };
 
   function addDriver() {
-    if (!newNickname.trim()) return;
-    drivers = [...drivers, {
-      id: crypto.randomUUID(),
-      nickname: newNickname.trim(),
-      number: newNumber ? parseInt(newNumber) : null,
-      realName: newRealName.trim() || null,
-    }];
-    newNickname = ''; newNumber = ''; newRealName = '';
+    const nick = newNickname.trim();
+    if (!nick) return;
+    const id = 'd-' + Math.random().toString(36).slice(2);
+    const num = newNumber ? parseInt(newNumber) : null;
+    const real = newRealName.trim() || null;
+    drivers = [...drivers, { id, nickname: nick, number: num, realName: real }];
+    newNickname = '';
+    newNumber = '';
+    newRealName = '';
   }
 
   function removeDriver(id) {
@@ -124,7 +125,7 @@
 
   {:else if step === 3}
     <h1 class="text-2xl font-black mb-1">🏎️ Drivers</h1>
-    <p class="text-sm text-[var(--text-secondary)] mb-6">Step 3 — Add racers (min 2)</p>
+    <p class="text-sm text-[var(--text-secondary)] mb-6">Step 3 — Add racers (min 2) · {drivers.length} added</p>
 
     {#if drivers.length > 0}
       <div class="space-y-2 mb-4">
