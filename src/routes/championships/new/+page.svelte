@@ -145,17 +145,17 @@
       </div>
     {/if}
 
-    <div class="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-4 mb-4">
-      <div class="flex gap-2 mb-3">
+    <div class="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-4 mb-4 space-y-2">
+      <div class="flex gap-2">
         <input type="number" bind:value={newNumber} placeholder="#" min="1" max="999"
-          class="w-16 px-3 py-2.5 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-center text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-red)]" />
+          class="w-16 px-3 py-3 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-center text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-red)]" />
         <input type="text" bind:value={newNickname} placeholder="Nickname *"
-          class="flex-1 px-3 py-2.5 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-[var(--neon-red)]" />
-        <input type="text" bind:value={newRealName} placeholder="Real name"
-          class="flex-1 px-3 py-2.5 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-[var(--neon-red)]" />
+          class="flex-1 px-3 py-3 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-[var(--neon-red)]" />
       </div>
+      <input type="text" bind:value={newRealName} placeholder="Real name (optional)"
+        class="w-full px-3 py-3 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-[var(--neon-red)]" />
       <button type="button" onclick={addDriver} disabled={!newNickname.trim()}
-        class="w-full py-2.5 border border-[var(--neon-red)]/40 text-[var(--neon-red)] font-semibold rounded-lg text-sm hover:bg-[var(--neon-red)]/10 disabled:opacity-30">
+        class="w-full py-3 border border-[var(--neon-red)]/40 text-[var(--neon-red)] font-semibold rounded-lg text-sm hover:bg-[var(--neon-red)]/10 disabled:opacity-30">
         + Add Driver
       </button>
     </div>
