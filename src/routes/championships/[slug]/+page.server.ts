@@ -4,8 +4,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params }) => {
   const championship = await getChampionshipBySlug(params.slug);
   if (!championship) {
-    // Return demo data if no real championship found
-    return { championship: null, drivers: [], racesWithResults: [] };
+    return { championship: null, hasChampionship: false, drivers: [], racesWithResults: [] };
   }
 
   const drivers = await getDriversByChampionship(championship.id);
@@ -13,10 +12,12 @@ export const load: PageServerLoad = async ({ params }) => {
 
   const racesWithResults = [];
   for (const row of raceRows) {
-    const results = await getResultsByRace(row.race.id);
+    const raceResults = await getResultsByRace(row.race.id);
     racesWithResults.push({
-      ...row,
-      results: results.map(r => ({
+      race: row.race,
+      trackName: row.trackName || '',
+      trackLayout: row.trackLayout || '',
+      results: raceResults.map(r => ({
         ...r.result,
         driverNickname: r.driverNickname,
         driverNumber: r.driverNumber,
@@ -24,5 +25,5 @@ export const load: PageServerLoad = async ({ params }) => {
     });
   }
 
-  return { championship, drivers, racesWithResults };
+  return { championship, hasChampionship: true, drivers, racesWithResults };
 };
