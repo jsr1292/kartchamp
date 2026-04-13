@@ -154,9 +154,10 @@
       </div>
       <input type="text" bind:value={newRealName} placeholder="Real name (optional)"
         class="w-full px-3 py-3 bg-[var(--bg-dark)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-[var(--neon-red)]" />
-      <button type="button" onclick={addDriver} disabled={!newNickname.trim()}
-        class="w-full py-3 border border-[var(--neon-red)]/40 text-[var(--neon-red)] font-semibold rounded-lg text-sm hover:bg-[var(--neon-red)]/10 disabled:opacity-30">
-        + Add Driver
+      <button type="button" onclick={() => { addDriver(); }}
+        disabled={!newNickname.trim()}
+        class="w-full py-3.5 bg-[var(--neon-red)] text-white font-bold rounded-xl text-base active:bg-red-700 disabled:opacity-30 disabled:cursor-not-allowed">
+        + Add Driver ({drivers.length} added)
       </button>
     </div>
 
