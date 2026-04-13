@@ -2,9 +2,17 @@ import { pgTable, text, integer, timestamp, jsonb, boolean, uuid } from 'drizzle
 
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
-  clerkId: text('clerk_id').unique().notNull(),
-  email: text('email').notNull(),
-  nickname: text('nickname'),
+  email: text('email').unique().notNull(),
+  passwordHash: text('password_hash').notNull(),
+  nickname: text('nickname').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const sessions = pgTable('sessions', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id').references(() => users.id).notNull(),
+  token: text('token').unique().notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
