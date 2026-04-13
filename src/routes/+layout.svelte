@@ -1,4 +1,5 @@
 <script>
+  import '../app.css';
   import { page } from '$app/stores';
   let { children } = $props();
   let currentPath = $derived($page.url.pathname);
